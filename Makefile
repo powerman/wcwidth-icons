@@ -1,7 +1,9 @@
-LIBDIR ?= /usr/lib
+LIBDIR  ?= /usr/lib
+CFLAGS  += -ldl
+LDFLAGS += -Wl,-z,defs -Wl,--as-needed
 
 libwcwidth-icons.so: wcwidth-icons.c
-	$(CC) $(CFLAGS) $(LDFLAGS) -shared -ldl -fPIC -Wl,-z,defs -Wl,--as-needed -o $@ $^
+	$(CC) $(CFLAGS) $(LDFLAGS) -Wl,-soname,libwcwidth-icons.so -shared -fPIC -o $@ $^
 
 clean:
 	rm -f *.so
