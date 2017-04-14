@@ -18,9 +18,8 @@ applications with extra patch, provided in [patches/](patches/) directory.
 ## Install
 
 ```sh
-# Build libwcwidth-icons.so and copy it somewhere
-make
-sudo cp libwcwidth-icons.so /usr/local/lib/
+# Build libwcwidth-icons.so and copy it to /usr/lib/ by default.
+sudo make install
 
 # Patch Vim in Gentoo Linux
 sudo mkdir -p /etc/portage/patches/app-editors/{vim,vim-core}/
@@ -32,7 +31,7 @@ sudo emerge -1 vim vim-core
 ## Usage
 
 ```sh
-export LD_PRELOAD=/usr/local/lib/libwcwidth-icons.so
+export LD_PRELOAD=/usr/lib/libwcwidth-icons.so
 ```
 
 Then run urxvt/xterm/zsh/… using font with double-width icons.
