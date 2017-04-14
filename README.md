@@ -20,11 +20,19 @@ applications with extra patch, provided in [patches/](patches/) directory.
 ```sh
 # Build libwcwidth-icons.so and copy it to /usr/lib/ by default.
 sudo make install
+```
 
-# Patch Vim in Gentoo Linux
-sudo mkdir -p /etc/portage/patches/app-editors/{vim,vim-core}/
-sudo cp patches/vim/* /etc/portage/patches/app-editors/vim/
-sudo cp patches/vim/* /etc/portage/patches/app-editors/vim-core/
+### Gentoo Linux
+
+```
+sudo layman -a powerman
+sudo emerge wcwidth-icons
+
+# Patch Vim
+sudo mkdir -p /etc/portage/patches/app-editors/vim{,-core}/
+sudo wget https://github.com/powerman/wcwidth-icons/raw/master/patches/vim/wcwidth-icons.patch \
+    -O /etc/portage/patches/app-editors/vim/wcwidth-icons.patch
+sudo cp /etc/portage/patches/app-editors/vim{,-core}/wcwidth-icons.patch
 sudo emerge -1 vim vim-core
 ```
 
