@@ -23,8 +23,11 @@ wcwidth (wchar_t ucs)
     ucs == 0x26a1 ||                            /* Octicons */
     ucs == 0x2b58 ||                            /* IEC Power Symbols */
     (ucs >= 0xe000 && ucs <= 0xe09f) ||
-    /* e0a0-e0a3,e0b0-e0b7 is single-width Powerline Extra Symbols */
-    (ucs >= 0xe0b8 && ucs <= 0xf8ff))
+    /* e0a0-e0a2,e0b0-e0b3 is single-width Powerline Extra Symbols */
+    (ucs == 0xe0a3) ||
+    (ucs >= 0xe0b4 && ucs <= 0xf8ff) ||
+    /* Material Design Icons */
+    (ucs >= 0xf0000 && ucs <= 0xf1af0))
     return 2;
   return next_wcwidth(ucs);
 }
