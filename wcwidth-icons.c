@@ -46,3 +46,13 @@ wcswidth (const wchar_t *s, size_t n)
 
   return result;
 }
+
+/*
+ * Avoid using LD_PRELOAD by a child process
+ */
+int  __attribute__((constructor))
+main_init(void)
+{
+  unsetenv("LD_PRELOAD");
+  return 0;
+}
