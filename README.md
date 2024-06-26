@@ -15,6 +15,9 @@ you can use provided library in `LD_PRELOAD` environment variable.
 To fix some other applications (like vim) you may need to build these
 applications with extra patch, provided in [patches/](patches/) directory.
 
+With these fixes you should use Nerd Fonts with "Propo" font name suffix
+instead of "Mono".
+
 ## Install
 
 ```sh

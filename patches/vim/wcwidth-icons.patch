@@ -1,7 +1,7 @@
 diff -uNr a/src/mbyte.c b/src/mbyte.c
---- a/src/mbyte.c	2017-04-13 16:56:55.310268357 +0300
-+++ b/src/mbyte.c	2017-04-13 16:54:50.560264604 +0300
-@@ -1415,9 +1415,11 @@
+--- a/src/mbyte.c	2024-04-22 22:07:41.000000000 +0300
++++ b/src/mbyte.c	2024-06-27 02:23:04.098777714 +0300
+@@ -1387,9 +1387,11 @@
  	{0x23e9, 0x23ec},
  	{0x23f0, 0x23f0},
  	{0x23f3, 0x23f3},
@@ -13,7 +13,7 @@ diff -uNr a/src/mbyte.c b/src/mbyte.c
  	{0x267f, 0x267f},
  	{0x2693, 0x2693},
  	{0x26a1, 0x26a1},
-@@ -1444,6 +1446,7 @@
+@@ -1416,6 +1418,7 @@
  	{0x2b1b, 0x2b1c},
  	{0x2b50, 0x2b50},
  	{0x2b55, 0x2b55},
@@ -21,12 +21,22 @@ diff -uNr a/src/mbyte.c b/src/mbyte.c
  	{0x2e80, 0x2e99},
  	{0x2e9b, 0x2ef3},
  	{0x2f00, 0x2fd5},
-@@ -1463,6 +1466,8 @@
+@@ -1432,6 +1435,8 @@
  	{0xa490, 0xa4c6},
  	{0xa960, 0xa97c},
  	{0xac00, 0xd7a3},
-+	{0xe000, 0xe09f},
++	{0xe000, 0xe00a},
 +	{0xe0b8, 0xf8ff},
  	{0xf900, 0xfaff},
  	{0xfe10, 0xfe19},
  	{0xfe30, 0xfe52},
+@@ -1500,7 +1505,8 @@
+ 	{0x1fae0, 0x1fae8},
+ 	{0x1faf0, 0x1faf8},
+ 	{0x20000, 0x2fffd},
+-	{0x30000, 0x3fffd}
++	{0x30000, 0x3fffd},
++	{0xf0001, 0xf1af8}
+     };
+ 
+     // Sorted list of non-overlapping intervals of Emoji characters that don't
