@@ -12,8 +12,7 @@ To fix this for most applications (like xterm/rxvt-unicode/zsh/…) which
 use libc function (like `wcwidth(3)` or `wcswidth(3)`) to get symbol width
 you can use provided library in `LD_PRELOAD` environment variable.
 
-To fix some other applications (like vim) you may need to build these
-applications with extra patch, provided in [patches/](patches/) directory.
+Some other applications may need extra configuration or a patch (see below).
 
 With these fixes you should use Nerd Fonts with "Propo" font name suffix
 instead of "Mono".
@@ -46,3 +45,59 @@ export LD_PRELOAD=/usr/lib/libwcwidth-icons.so
 ```
 
 Then run urxvt/xterm/zsh/… using font with double-width icons.
+
+## Other applications
+
+### Vim
+
+Add this to your Vim configuration:
+
+```vim
+" Fix icon width for Nerd Fonts v3.2.1.
+call setcellwidths([
+\   [ 0x23fb, 0x23fe, 2 ],
+\   [ 0x2665, 0x2665, 2 ],
+\   [ 0x2b58, 0x2b58, 2 ],
+\   [ 0xe000, 0xe00a, 2 ],
+\   [ 0xe0b8, 0xe0c8, 2 ],
+\   [ 0xe0ca, 0xe0ca, 2 ],
+\   [ 0xe0cc, 0xe0d7, 2 ],
+\   [ 0xe200, 0xe2a9, 2 ],
+\   [ 0xe300, 0xe3e3, 2 ],
+\   [ 0xe5fa, 0xe6b5, 2 ],
+\   [ 0xe700, 0xe7c5, 2 ],
+\   [ 0xea60, 0xec1e, 2 ],
+\   [ 0xed00, 0xefce, 2 ],
+\   [ 0xf000, 0xf2ff, 2 ],
+\   [ 0xf300, 0xf375, 2 ],
+\   [ 0xf400, 0xf533, 2 ],
+\   [ 0xf0001, 0xf1af0, 2 ],
+\ ])
+```
+
+### Neovim
+
+Add this to your Neovim configuration:
+
+```lua
+-- Fix icon width for Nerd Fonts v3.2.1.
+vim.fn.setcellwidths {
+  { 0x23fb, 0x23fe, 2 }, -- IEC Power Symbols
+  { 0x2665, 0x2665, 2 }, -- Octicons
+  { 0x2b58, 0x2b58, 2 }, -- IEC Power Symbols
+  { 0xe000, 0xe00a, 2 }, -- Pomicons
+  { 0xe0b8, 0xe0c8, 2 }, -- Powerline Extra
+  { 0xe0ca, 0xe0ca, 2 }, -- Powerline Extra
+  { 0xe0cc, 0xe0d7, 2 }, -- Powerline Extra
+  { 0xe200, 0xe2a9, 2 }, -- Font Awesome Extension
+  { 0xe300, 0xe3e3, 2 }, -- Weather Icons
+  { 0xe5fa, 0xe6b5, 2 }, -- Seti-UI + Custom
+  { 0xe700, 0xe7c5, 2 }, -- Devicons
+  { 0xea60, 0xec1e, 2 }, -- Codicons
+  { 0xed00, 0xefce, 2 }, -- Font Awesome
+  { 0xf000, 0xf2ff, 2 }, -- Font Awesome
+  { 0xf300, 0xf375, 2 }, -- Font Logos
+  { 0xf400, 0xf533, 2 }, -- Octicons
+  { 0xf0001, 0xf1af0, 2 }, -- Material Design
+}
+```
