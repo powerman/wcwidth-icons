@@ -29,8 +29,8 @@ wcwidth (wchar_t ucs)
     /* e0a0-e0a2    single-width Powerline */
     /* e0a3         single-width Powerline Extra */
     /* e0b0-e0b3    single-width Powerline */
-    /* e0b4-e0b7    single-width Powerline Extra */
-    (ucs >= 0xe0b8 && ucs <= 0xe0c8) ||         /* Powerline Extra */
+    /* e0b4-e0bf    single-width Powerline Extra */
+    (ucs >= 0xe0c0 && ucs <= 0xe0c8) ||         /* Powerline Extra */
     ucs == 0xe0ca ||                            /* Powerline Extra */
     (ucs >= 0xe0cc && ucs <= 0xe0d7) ||         /* Powerline Extra */
     (ucs >= 0xe200 && ucs <= 0xe2a9) ||         /* Font Awesome Extension */
