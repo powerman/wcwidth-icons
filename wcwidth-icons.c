@@ -2,7 +2,7 @@
  * This is an implementation of wrappers for wcwidth() and wcswidth()
  * which explicitly defines double character-cell width for icons.
  *
- * Author: Alex Efros <wcwidth-icons@id.powerman.name>, 2017-2024
+ * Author: Alex Efros <wcwidth-icons@id.powerman.name>, 2017-2025
  * License: LGPL 2.1+
  */
 
@@ -19,30 +19,14 @@ wcwidth (wchar_t ucs)
     next_wcwidth = (int(*)(wchar_t)) dlsym(RTLD_NEXT, "wcwidth");
 
   /***
-   * Nerd Fonts v3.2.1
+   * Fix icon width for Nerd Fonts v3 (non-Mono variant).
    ***/
-  if ((ucs >= 0x23fb && ucs <= 0x23fe) ||       /* IEC Power Symbols */
-    ucs == 0x2665 ||                            /* Octicons */
-    ucs == 0x26a1 ||                            /* Octicons */
-    ucs == 0x2b58 ||                            /* IEC Power Symbols */
-    (ucs >= 0xe000 && ucs <= 0xe00a) ||         /* Pomicons */
-    /* e0a0-e0a2    single-width Powerline */
-    /* e0a3         single-width Powerline Extra */
-    /* e0b0-e0b3    single-width Powerline */
-    /* e0b4-e0bf    single-width Powerline Extra */
-    (ucs >= 0xe0c0 && ucs <= 0xe0c8) ||         /* Powerline Extra */
-    ucs == 0xe0ca ||                            /* Powerline Extra */
-    (ucs >= 0xe0cc && ucs <= 0xe0d7) ||         /* Powerline Extra */
-    (ucs >= 0xe200 && ucs <= 0xe2a9) ||         /* Font Awesome Extension */
-    (ucs >= 0xe300 && ucs <= 0xe3e3) ||         /* Weather Icons */
-    (ucs >= 0xe5fa && ucs <= 0xe6b5) ||         /* Seti-UI + Custom */
-    (ucs >= 0xe700 && ucs <= 0xe7c5) ||         /* Devicons */
-    (ucs >= 0xea60 && ucs <= 0xec1e) ||         /* Codicons */
-    (ucs >= 0xed00 && ucs <= 0xefce) ||         /* Font Awesome */
-    (ucs >= 0xf000 && ucs <= 0xf2ff) ||         /* Font Awesome */
-    (ucs >= 0xf300 && ucs <= 0xf375) ||         /* Font Logos */
-    (ucs >= 0xf400 && ucs <= 0xf533) ||         /* Octicons */
-    (ucs >= 0xf0001 && ucs <= 0xf1af0))         /* Material Design */
+  if ((ucs >= 0x23fb && ucs <= 0x23fe) ||
+    ucs == 0x2665 ||
+    ucs == 0x2b58 ||
+    (ucs >= 0xe000 && ucs <= 0xe09f) ||
+    (ucs >= 0xe0c0 && ucs <= 0xf8ff) ||
+    (ucs >= 0xf0001 && ucs <= 0xfffff))
     return 2;
   return next_wcwidth(ucs);
 }
@@ -57,7 +41,7 @@ wcswidth (const wchar_t *s, size_t n)
     {
       int now = wcwidth (*s);
       if (now == -1)
-	return -1;
+        return -1;
       result += now;
       ++s;
     }

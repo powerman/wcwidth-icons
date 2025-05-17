@@ -26,21 +26,15 @@ sudo make install
 
 ### Gentoo Linux
 
-```
+```sh
 sudo layman -a powerman
 sudo emerge wcwidth-icons
-
-# Patch Vim
-sudo mkdir -p /etc/portage/patches/app-editors/vim{,-core}/
-sudo wget https://github.com/powerman/wcwidth-icons/raw/master/patches/vim/wcwidth-icons.patch \
-    -O /etc/portage/patches/app-editors/vim/wcwidth-icons.patch
-sudo cp /etc/portage/patches/app-editors/vim{,-core}/wcwidth-icons.patch
-sudo emerge -1 vim vim-core
 ```
 
 ## Usage
 
 ```sh
+# Fix icon width for Nerd Fonts v3 (non-Mono variant).
 export LD_PRELOAD=/usr/lib/libwcwidth-icons.so
 ```
 
@@ -51,7 +45,8 @@ Then run urxvt/xterm/zsh/… using font with double-width icons.
 ### Less
 
 ```sh
-export LESSUTFCHARDEF="23fb-23fe:w,2665:w,2b58:w,e000-e00a:w,e0a0-e0a3:p,e0b0-e0bf:p,e0c0-e0c8:w,e0ca:w,e0cc-e0d7:w,e200-e2a9:w,e300-e3e3:w,e5fa-e6b5:w,e700-e7c5:w,ea60-ec1e:w,ed00-efce:w,f000-f2ff:w,f300-f375:w,f400-f533:w,f0001-f1af0:w"
+# Fix icon width for Nerd Fonts v3 (non-Mono variant).
+export LESSUTFCHARDEF="23fb-23fe:w,2665:w,2b58:w,e000-e09f:w,e0a0-e0bf:p,e0c0-f8ff:w,f0001-fffff:w"
 ```
 
 ### Vim
@@ -59,25 +54,14 @@ export LESSUTFCHARDEF="23fb-23fe:w,2665:w,2b58:w,e000-e00a:w,e0a0-e0a3:p,e0b0-e0
 Add this to your Vim configuration:
 
 ```vim
-" Fix icon width for Nerd Fonts v3.2.1.
+" Fix icon width for Nerd Fonts v3 (non-Mono variant).
 call setcellwidths([
 \   [ 0x23fb, 0x23fe, 2 ],
 \   [ 0x2665, 0x2665, 2 ],
 \   [ 0x2b58, 0x2b58, 2 ],
-\   [ 0xe000, 0xe00a, 2 ],
-\   [ 0xe0c0, 0xe0c8, 2 ],
-\   [ 0xe0ca, 0xe0ca, 2 ],
-\   [ 0xe0cc, 0xe0d7, 2 ],
-\   [ 0xe200, 0xe2a9, 2 ],
-\   [ 0xe300, 0xe3e3, 2 ],
-\   [ 0xe5fa, 0xe6b5, 2 ],
-\   [ 0xe700, 0xe7c5, 2 ],
-\   [ 0xea60, 0xec1e, 2 ],
-\   [ 0xed00, 0xefce, 2 ],
-\   [ 0xf000, 0xf2ff, 2 ],
-\   [ 0xf300, 0xf375, 2 ],
-\   [ 0xf400, 0xf533, 2 ],
-\   [ 0xf0001, 0xf1af0, 2 ],
+\   [ 0xe000, 0xe09f, 2 ],
+\   [ 0xe0c0, 0xf8ff, 2 ],
+\   [ 0xf0001, 0xfffff, 2 ],
 \ ])
 ```
 
@@ -86,24 +70,13 @@ call setcellwidths([
 Add this to your Neovim configuration:
 
 ```lua
--- Fix icon width for Nerd Fonts v3.2.1.
+-- Fix icon width for Nerd Fonts v3 (non-Mono variant).
 vim.fn.setcellwidths({
-    { 0x23fb, 0x23fe, 2 }, -- IEC Power Symbols
-    { 0x2665, 0x2665, 2 }, -- Octicons
-    { 0x2b58, 0x2b58, 2 }, -- IEC Power Symbols
-    { 0xe000, 0xe00a, 2 }, -- Pomicons
-    { 0xe0c0, 0xe0c8, 2 }, -- Powerline Extra
-    { 0xe0ca, 0xe0ca, 2 }, -- Powerline Extra
-    { 0xe0cc, 0xe0d7, 2 }, -- Powerline Extra
-    { 0xe200, 0xe2a9, 2 }, -- Font Awesome Extension
-    { 0xe300, 0xe3e3, 2 }, -- Weather Icons
-    { 0xe5fa, 0xe6b5, 2 }, -- Seti-UI + Custom
-    { 0xe700, 0xe7c5, 2 }, -- Devicons
-    { 0xea60, 0xec1e, 2 }, -- Codicons
-    { 0xed00, 0xefce, 2 }, -- Font Awesome
-    { 0xf000, 0xf2ff, 2 }, -- Font Awesome
-    { 0xf300, 0xf375, 2 }, -- Font Logos
-    { 0xf400, 0xf533, 2 }, -- Octicons
-    { 0xf0001, 0xf1af0, 2 }, -- Material Design
+    { 0x23fb, 0x23fe, 2 },
+    { 0x2665, 0x2665, 2 },
+    { 0x2b58, 0x2b58, 2 },
+    { 0xe000, 0xe09f, 2 },
+    { 0xe0c0, 0xf8ff, 2 },
+    { 0xf0001, 0xfffff, 2 },
 })
 ```
